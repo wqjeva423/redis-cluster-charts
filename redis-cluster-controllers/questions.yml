@@ -1,0 +1,163 @@
+categories:
+  - key-value
+questions:
+  - variable: xc.enable #variable代表后台接口需要的的key
+    description: "是否部署在信创节点" #variable代表前端展示的字段名称
+    default: true
+    required: true
+    type: boolean
+    label: 是否部署在信创节点
+    group: "Redis Cluster Operator Settings"
+    chartName: true
+    tips: ""
+    edit: false
+  - variable: replicaCount
+    description: "Redis operator Replica"
+    default: 1
+    required: true
+    type: int
+    label: Redis operator replica
+    group: "Redis Cluster Operator Replica"
+    chartName: true
+    tips: ""
+    edit: false
+  - variable: image.repository
+    description: "Redis operator"
+    default: "dev.repo.bj.bob/public-docker-baseimage-local/func/redis-cluster-operator:v1.1.7"
+    required: true
+    type: string
+    label: Redis operator
+    group: "Redis Cluster Operator Image"
+    chartName: true
+    tips: ""
+    edit: false
+  - variable: Redis5DefaultImage.repository
+    description: "Redis5.0"
+    default: "dev.repo.bj.bob/public-docker-baseimage-local/func/redis:5.0"
+    required: true
+    type: string
+    label: Redis5.0
+    group: "Redis Cluster Redis5.0 Image"
+    chartName: true
+    tips: ""
+    edit: false
+  - variable: Redis6DefaultImage.repository
+    description: "Redis6.0"
+    default: "dev.repo.bj.bob/public-docker-baseimage-local/func/redis:6.2.17"
+    required: true
+    type: string
+    label: Redis6.0
+    group: "Redis Cluster Redis6.0 Image"
+    chartName: true
+    tips: ""
+    edit: false
+  - variable: RedisNodeDefaultImage.repository
+    description: "Redis Sidecar"
+    default: "dev.repo.bj.bob/public-docker-baseimage-local/func/redis-cluster-node:v1.1.1"
+    required: true
+    type: string
+    label: Redis Sidecar
+    group: "Redis Cluster Redis Sidecar Image"
+    chartName: true
+    tips: ""
+    edit: false
+  - variable: RedisExporterDefaultImage.repository
+    description: "Redis Exporter"
+    default: "dev.repo.bj.bob/public-docker-baseimage-local/func/redis_exporter:v1.59.0-auth"
+    required: true
+    type: string
+    label: Redis Exporter
+    group: "Redis Cluster Redis Exporter Image"
+    chartName: true
+    tips: ""
+    edit: false
+  - variable: RedisS3cmdDefaultImage.repository
+    description: "Redis S3cmd"
+    default: "dev.repo.bj.bob/public-docker-baseimage-local/func/s3cmd:v3.0.0"
+    required: true
+    type: string
+    label: Redis S3cmd
+    group: "Redis Cluster Redis S3cmd Image"
+    chartName: true
+    tips: ""
+    edit: false
+  - variable: RedisAlpineDefaultImage.repository
+    description: "Redis Alpine"
+    default: "dev.repo.bj.bob/public-docker-baseimage-local/func/alpine:3.15.0"
+    required: true
+    type: string
+    label: Redis Alpine
+    group: "Redis Cluster Redis Alpine Image"
+    chartName: true
+    tips: ""
+    edit: false
+  - variable: rbacProxyImage.repository
+    description: "Redis RBAC Rroxy"
+    default: "dev.repo.bj.bob/public-docker-baseimage-local/func/kube-rbac-proxy:v0.11.0"
+    required: true
+    type: string
+    label: Redis RBAC Rroxy
+    group: "Redis Cluster Redis RBAC Rroxy Image"
+    chartName: true
+    tips: ""
+    edit: false
+  - variable: toolsImage
+    description: "Redis Tools"
+    default: "dev.repo.bj.bob/public-docker-baseimage-local/func/redis_tools:v0.2.7"
+    required: true
+    type: string
+    label: Redis Tools
+    group: "Redis Cluster Redis Tools Image"
+    chartName: true
+    tips: ""
+    edit: false
+  - variable: topkeyImage
+    description: "Redis Topkey"
+    default: "dev.repo.bj.bob/public-docker-baseimage-local/func/redis_topkeys:v0.2.1"
+    required: true
+    type: string
+    label: Redis Topkey
+    group: "Redis Cluster Redis Tools Image"
+    chartName: true
+    tips: ""
+    edit: false
+  - variable: CycleTime
+    description: "Cycle Time"
+    default: "20"
+    required: true
+    type: string
+    label: Cycle Time
+    group: "Redis Cluster CycleTime and Concurrent"
+    chartName: true
+    tips: ""
+    edit: false
+  - variable: BackupCycleTime
+    description: "Backup CycleTime"
+    default: "900"
+    required: true
+    type: string
+    label: Backup CycleTime
+    group: "Redis Cluster CycleTime and Concurrent"
+    chartName: true
+    tips: ""
+    edit: false
+  - variable: StatusConcurrent
+    description: "Status Concurrent"
+    default: "20"
+    required: true
+    type: string
+    label: Status Concurrent
+    group: "Redis Cluster CycleTime and Concurrent"
+    chartName: true
+    tips: ""
+    edit: false
+  - variable: ClusterConcurrent
+    description: "Cluster Concurrent"
+    default: "10"
+    required: true
+    type: string
+    label: Cluster Concurrent
+    group: "Redis Cluster CycleTime and Concurrent"
+    chartName: true
+    tips: ""
+    edit: false

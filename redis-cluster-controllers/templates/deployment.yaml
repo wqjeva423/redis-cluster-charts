@@ -1,0 +1,123 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels: {{- include "operator-for-redis.labels" . | nindent 4 }}
+  name: {{ include "operator-for-redis.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "operator-for-redis.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container: manager
+      labels:
+        {{- include "operator-for-redis.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - args:
+            - --secure-listen-address=0.0.0.0:8443
+            - --upstream=http://127.0.0.1:8080/
+            - --logtostderr=true
+            - --v=0
+          image: "{{ .Values.rbacProxyImage.repository}}"
+          name: kube-rbac-proxy
+          ports:
+            - containerPort: 8443
+              name: https
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 1Gi
+            requests:
+              cpu: 500m
+              memory: 512Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+        - args:
+            - --health-probe-bind-address=:8081
+            - --metrics-bind-address=127.0.0.1:8080
+            - --leader-elect
+            - --v=8
+          command:
+            - /manager
+          image: "{{ .Values.image.repository}}"
+          env:
+            - name: REDIS_5_DEFAULT_IMAGE
+              value: "{{ .Values.Redis5DefaultImage.repository}}"
+            - name: REDIS_6_DEFAULT_IMAGE
+              value: "{{ .Values.Redis6DefaultImage.repository}}"
+            - name: REDIS_NODE_DEFAULT_IMAGE
+              value: "{{ .Values.RedisNodeDefaultImage.repository}}"
+            - name: REDIS_EXPORTER_DEFAULT_IMAGE
+              value: "{{ .Values.RedisExporterDefaultImage.repository}}"
+            - name: REDIS_S3CMD_DEFAULT_IMAGE
+              value: "{{ .Values.RedisS3cmdDefaultImage.repository}}"
+            - name: REDIS_ALPINE_DEFAULT_IMAGE
+              value: "{{ .Values.RedisAlpineDefaultImage.repository}}"
+            - name: tools_image
+              value: "{{ .Values.toolsImage }}"
+            - name: topkey_image
+              value: "{{ .Values.topkeyImage }}"
+            - name: CYCLE_TIME
+              value: "{{ .Values.CycleTime }}"
+            - name: BACKUP_CYCLE_TIME
+              value: "{{ .Values.BackupCycleTime }}"
+            - name: STATUS_CONCURRENT
+              value: "{{ .Values.StatusConcurrent }}"
+            - name: CLUSTER_CONCURRENT
+              value: "{{ .Values.ClusterConcurrent }}"
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8081
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          name: manager
+          ports:
+            - containerPort: 9443
+              name: webhook-server
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: 8081
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          resources:
+            limits:
+              cpu: 2000m
+              memory: 2Gi
+            requests:
+              cpu: 500m
+              memory: 1Gi
+          securityContext:
+            allowPrivilegeEscalation: false
+          volumeMounts:
+            - mountPath: /tmp/k8s-webhook-server/serving-certs
+              name: cert
+              readOnly: true
+      securityContext:
+        runAsNonRoot: true
+      serviceAccountName: {{ include "operator-for-redis.fullname" . }}
+      terminationGracePeriodSeconds: 10
+      {{- if .Values.xc.enable }}
+      nodeSelector:
+        cn.com.bobfintech.cce.node_xc: "true"
+      tolerations:
+        - key: "cn.com.bobfintech.cce.taint_xc"
+          operator: "Equal"
+          value: "true"
+          effect: "NoSchedule"
+      {{- end }}
+      volumes:
+        - name: cert
+          secret:
+            defaultMode: 420
+            secretName: webhook-server-cert

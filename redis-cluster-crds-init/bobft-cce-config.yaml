@@ -1,0 +1,9 @@
+name: Redis Cluster CRDs
+description: Redis Cluster 集群声明模块
+single: true
+chartName: redis-cluster-crds
+appType: redis-cluster
+packageType: crd
+version: 0.0.0
+dependOn:
+upgradeOn:

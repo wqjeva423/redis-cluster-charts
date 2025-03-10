@@ -1,0 +1,9 @@
+name: Redis Cluster Controllers
+description: Redis Cluster集群部署及管理模块
+single: true
+chartName: redis-cluster-controllers
+appType: redis-cluster
+packageType: controller
+version: 0.0.0
+dependOn:
+upgradeOn:
