@@ -10,7 +10,7 @@ questions:
     group: "Redis Cluster Operator Settings"
     chartName: true
     tips: ""
-    edit: false
+    edit: true
   - variable: replicaCount
     description: "Redis operator Replica"
     default: 1
@@ -20,7 +20,7 @@ questions:
     group: "Redis Cluster Operator Replica"
     chartName: true
     tips: ""
-    edit: false
+    edit: true
   - variable: image.repository
     description: "Redis operator"
     default: "dev.repo.bj.bob/public-docker-baseimage-local/func/redis-cluster-operator:v1.1.7"
@@ -30,7 +30,7 @@ questions:
     group: "Redis Cluster Operator Image"
     chartName: true
     tips: ""
-    edit: false
+    edit: true
   - variable: Redis5DefaultImage.repository
     description: "Redis5.0"
     default: "dev.repo.bj.bob/public-docker-baseimage-local/func/redis:5.0"
@@ -40,7 +40,7 @@ questions:
     group: "Redis Cluster Redis5.0 Image"
     chartName: true
     tips: ""
-    edit: false
+    edit: true
   - variable: Redis6DefaultImage.repository
     description: "Redis6.0"
     default: "dev.repo.bj.bob/public-docker-baseimage-local/func/redis:6.2.17"
@@ -50,7 +50,7 @@ questions:
     group: "Redis Cluster Redis6.0 Image"
     chartName: true
     tips: ""
-    edit: false
+    edit: true
   - variable: RedisNodeDefaultImage.repository
     description: "Redis Sidecar"
     default: "dev.repo.bj.bob/public-docker-baseimage-local/func/redis-cluster-node:v1.1.1"
@@ -60,7 +60,7 @@ questions:
     group: "Redis Cluster Redis Sidecar Image"
     chartName: true
     tips: ""
-    edit: false
+    edit: true
   - variable: RedisExporterDefaultImage.repository
     description: "Redis Exporter"
     default: "dev.repo.bj.bob/public-docker-baseimage-local/func/redis_exporter:v1.59.0-auth"
@@ -70,7 +70,7 @@ questions:
     group: "Redis Cluster Redis Exporter Image"
     chartName: true
     tips: ""
-    edit: false
+    edit: true
   - variable: RedisS3cmdDefaultImage.repository
     description: "Redis S3cmd"
     default: "dev.repo.bj.bob/public-docker-baseimage-local/func/s3cmd:v3.0.0"
@@ -80,7 +80,7 @@ questions:
     group: "Redis Cluster Redis S3cmd Image"
     chartName: true
     tips: ""
-    edit: false
+    edit: true
   - variable: RedisAlpineDefaultImage.repository
     description: "Redis Alpine"
     default: "dev.repo.bj.bob/public-docker-baseimage-local/func/alpine:3.15.0"
@@ -90,7 +90,7 @@ questions:
     group: "Redis Cluster Redis Alpine Image"
     chartName: true
     tips: ""
-    edit: false
+    edit: true
   - variable: rbacProxyImage.repository
     description: "Redis RBAC Rroxy"
     default: "dev.repo.bj.bob/public-docker-baseimage-local/func/kube-rbac-proxy:v0.11.0"
@@ -100,7 +100,7 @@ questions:
     group: "Redis Cluster Redis RBAC Rroxy Image"
     chartName: true
     tips: ""
-    edit: false
+    edit: true
   - variable: toolsImage
     description: "Redis Tools"
     default: "dev.repo.bj.bob/public-docker-baseimage-local/func/redis_tools:v0.2.7"
@@ -110,7 +110,7 @@ questions:
     group: "Redis Cluster Redis Tools Image"
     chartName: true
     tips: ""
-    edit: false
+    edit: true
   - variable: topkeyImage
     description: "Redis Topkey"
     default: "dev.repo.bj.bob/public-docker-baseimage-local/func/redis_topkeys:v0.2.1"
@@ -120,7 +120,7 @@ questions:
     group: "Redis Cluster Redis Tools Image"
     chartName: true
     tips: ""
-    edit: false
+    edit: true
   - variable: CycleTime
     description: "Cycle Time"
     default: "20"
@@ -130,7 +130,7 @@ questions:
     group: "Redis Cluster CycleTime and Concurrent"
     chartName: true
     tips: ""
-    edit: false
+    edit: true
   - variable: BackupCycleTime
     description: "Backup CycleTime"
     default: "900"
@@ -140,7 +140,7 @@ questions:
     group: "Redis Cluster CycleTime and Concurrent"
     chartName: true
     tips: ""
-    edit: false
+    edit: true
   - variable: StatusConcurrent
     description: "Status Concurrent"
     default: "20"
@@ -150,7 +150,7 @@ questions:
     group: "Redis Cluster CycleTime and Concurrent"
     chartName: true
     tips: ""
-    edit: false
+    edit: true
   - variable: ClusterConcurrent
     description: "Cluster Concurrent"
     default: "10"
@@ -160,4 +160,4 @@ questions:
     group: "Redis Cluster CycleTime and Concurrent"
     chartName: true
     tips: ""
-    edit: false
+    edit: true
