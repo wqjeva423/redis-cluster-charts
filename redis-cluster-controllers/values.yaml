@@ -47,8 +47,8 @@ strategy:
 extraArgs: []
 
 imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
+nameOverride: "redis-cluster-operator"
+fullnameOverride: "redis-cluster-operator"
 
 serviceAccount:
   # Specifies whether a service account should be created
