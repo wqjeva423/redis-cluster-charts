@@ -1,6 +1,6 @@
 # Redis Cluster Operator
 
-## Operator功能说明
+### Operator功能说明
 
 1.Redis Cluster Operator用于在kubernetes集群部署Redis集群
 
